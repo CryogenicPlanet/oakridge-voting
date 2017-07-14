@@ -1,6 +1,3 @@
-# oakridge-voting
-a base repo for computer science code in school
-
 # Coding Resources I recommend
 
 ### Text Editor
