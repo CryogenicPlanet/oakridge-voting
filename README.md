@@ -1,4 +1,4 @@
-# oakridge-school
+# oakridge-voting
 a base repo for computer science code in school
 
 # Coding Resources I recommend
@@ -43,4 +43,3 @@ As most of you are beginners to programming it is very important to comment as i
 1. git add "filename.txt" - this stages a specific page and is the first step of the push process. **You can use git add . to stage all changed files**
 2. git commit -m "your commit message" - this adds a commit message to the code you are pushing. **Please use relevant commit message to signify push and not some random nonsense**
 3. git push - this is the last step in the push process. Once this command is enter it will ask for your username, please enter your github username. after which it will ask for your password, **your password won't be shown on the console while typing it, so just type your password even tho it might seem like nothing is changing**
- 
