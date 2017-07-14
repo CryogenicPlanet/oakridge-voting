@@ -1,19 +1,19 @@
-# Coding Resources I recommend
+# Coding Resources I Recommend
 
 ### Text Editor
 1. [Atom](http://atom.io)
 2. [Brackets](http://brackets.io/)
-3. [Cloud 9](http://c9.io) this is an online text editor with full linux terminal and other benefits.
+3. [Cloud 9](http://c9.io). This is an online text editor with full Linux terminal and other benefits.
 
-All 3 softwares are completely free to use, but cloud 9 need you to give credit card information to authenticate. **It doesn't charge your card**
+All 3 pieces of software are completely free to use, but Cloud9 needs you to provide credit card information to verify. **It doesn't charge your card**
 
 ### Online Resources mostly needed.
 
-1. [Materialised Css](http://materializecss.com/)
-2. [W3 schools](https://www.w3schools.com) Excellent Basic Resource for learning some syntax for the code. **Don't look for html and css here as much as possible tho as materializecss should have what we need**
-3. [Stackoverflow](https://stackoverflow.com/)
+1. [Materialize CSS](http://materializecss.com/)
+2. [W3 schools](https://www.w3schools.com) An excellent resource for learning some syntax for the code. **Don't look for HTML and CSS here. Use Materialize styles as much as possible**
+3. [Stack Overflow](https://stackoverflow.com/)
 
-I wouldn't recommend going to stackoverflow or w3 schools directly but instead googling your question and look for links in these sites.**For anything to do with Html or Css go to materializecss first, before googling**
+I wouldn't recommend going to Stack Overflow or W3Schools directly but instead googling your question and look for links in these sites. **For anything to do with HTML or CSS try MaterializeCSS first, before googling**
 
 
 ### Github Client
