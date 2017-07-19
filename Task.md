@@ -14,6 +14,9 @@
 4. Make a Submit Button
 
 ### Ajax Post
-
+1. Do an $.ajax post to a site for example to "/temp.php" I will send a echo back if you send { dataSent : "Sent Data" } as one of your variable you are passing.
+2. [Use This Reasources](https://stackoverflow.com/questions/10214723/jquery-ajax-post-data-in-a-java-servlet)
+3. Get all values of form from html to javascript.
+4. Send all data voting data via json.
 
 **Feel Free to take liberty with design and looks of the application as long as it using materializecss**
