@@ -1,6 +1,7 @@
 # Task To Be Done
 ## Deadline Monday
 **Use the below use this links only if you can figure out what do try do it yourself**
+**All this work given is too be done on the one index.html page**
 ### Login Window 
 1. Design Login Form. Inside Card centered on page
 2. Validate Username and Password by using Javascript. [Use This](https://www.w3schools.com/jsref/met_document_getelementbyid.asp)
