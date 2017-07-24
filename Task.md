@@ -1,7 +1,7 @@
 # Task To Be Done
 ## Deadline Monday
-**Use the below use this links only if you can figure out what do try do it yourself**
-**All this work given is too be done on the one index.html page**
+**Use the below use this links only if you can figure out what do try do it yourself.**
+
 ### Login Window 
 1. Design Login Form. Inside Card centered on page
 2. Validate Username and Password by using Javascript. [Use This](https://www.w3schools.com/jsref/met_document_getelementbyid.asp)
@@ -19,5 +19,6 @@
 2. [Use This Reasources](https://stackoverflow.com/questions/10214723/jquery-ajax-post-data-in-a-java-servlet)
 3. Get all values of form from html to javascript.
 4. Send all data voting data via json.
+**All this work given is too be done on the one index.html page.**
 
 **Feel Free to take liberty with design and looks of the application as long as it using materializecss**
