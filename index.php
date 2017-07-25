@@ -1,60 +1,8 @@
-<!--  <?php
-	//Enter database details to connect
-   $con=mysql_connect(DB_HOST,DB_USER,DB_PASSWORD) or die("Failed to connect to MySQL: " . mysql_error()); $db=mysql_select_db(DB_NAME,$con) or die("Failed to connect to MySQL: " . mysql_error());
-   
-   if(isset(_POST['userid']) && isset(_POST['userpwd']){
-     $ID = $_POST['userid']; 
-     $Password = $_POST['userpwd']; 
-
-     //Search in Database for user and check if password matches
-	
-    
-	 if(userfound == TRUE){
-     	if(match == TRUE){
-     		// successful sign in
-     		// Set cookieName and set cookieFlag to 0
-     	}
-     	else{
-     		// Password didnt match
-			// Set cookieFlag to 1 and reload sign in page
-    	}
-     } 
-     else{
-    	// User not found in database
-        // Set cookieFlag to 2 and reload sign in page
-     }
-     
-   }
-   else{
-   		// No user input recieved
-   		// reload sign in page
-   }
-
-> -- > <!-- Can't Do Php in html file -->
 <!DOCTYPE html>
   <html>
     <head>
-    <script>
-    	function checkCookie() {
-        if (document.cookie.indexOf('cookieFlag') > -1 ) {
-            var flag = getCookie("cookieFlag");
-            if(flag == 0){
-              var username = getCookie("cookieName");
-              if (username != "") {
-                  alert("Welcome again " + username);
-              } 
-            }
-            else if(flag == 1){
-            	getDocumentById("errorDiv").innerHTML = 'Wrong password, please try again'
-            }
-            else if(flag == 2){
-                getDocumentById("errorDiv").innerHTML = 'User not found, have you signed up with us?'
-            }
-        }
-    	}
-    </script>
-    
-      <!--Import Google Icon Font-->
+   
+         <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
@@ -67,6 +15,7 @@
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
+         <script type="text/javascript" src="js/sha.js"></script>
         <!-- This is the base html to which just link to all the materializecss files. -->
       <!-- 
       <h1><center>Oakridge Voting System</center></h1>
@@ -86,25 +35,48 @@
         <div class="card-panel teal">
           <h1> Oakridge Voting System</h1>
             <div id="loginForm">
-              <form>
+              <form action="Javascript:Login()">
                 <div class="row">
                   <div class="input-field col s6">
-                    <input placeholder="Username" id="userid" type="text" class="validate">
+                    <input placeholder="Username" id="userid" type="text" class="validate" required>
                     <label for="userid">Username</label>
                   </div>
                   <div class="input-field col s6">
-                    <input id="userpwd" type="password" class="validate">
+                    <input id="userpwd" type="password" class="validate" required>
                     <label for="userpwd">Password</label>
                   </div>
                 </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
                 </form>
+               
             </div>
         </div>
       </div>
     </div>
-      <div id="errorDiv">
-      
-      </div>
+    <script>
+    function Login() {
+    var username = document.getElementById("userid").value;
+        var password = document.getElementById("userpwd").value;
+        console.log(username + password);
+      //  var date = new Date();
+       // var hour = date.getHours();
+       var hour = 12;
+         var sha256 = new jsSHA('SHA-256', 'TEXT');
+      sha256.update(password);
+        var hash = sha256.getHash("HEX");
+        console.log(hash); 
+        if  (username === "admin" && hash === "904724B3EC8D73FD2E9C0CBEF4D2BF8E160F14AD73F3B7081E7B4AE811D84C96" ) {
+          document.getElementById("loginForm").style.display = 'none';
+        } else if ((username === "voting" && hash === "3ab4f1d4a5eb2f8b5db6b0cf2edc64d7635ad7335dbd2af1b0ee99433da85b01") && (hour > 8 && hour < 15)){
+          document.getElementById("loginForm").style.display = 'none';
+        }
+        else {
+           Materialize.toast('Wrong Password', 4000)
+        }
+    }
+    </script>
       
     </body>
   </html>
