@@ -1,4 +1,4 @@
-<?php
+<!--  <?php
 	//Enter database details to connect
    $con=mysql_connect(DB_HOST,DB_USER,DB_PASSWORD) or die("Failed to connect to MySQL: " . mysql_error()); $db=mysql_select_db(DB_NAME,$con) or die("Failed to connect to MySQL: " . mysql_error());
    
@@ -30,7 +30,7 @@
    		// reload sign in page
    }
 
->
+> -- > <!-- Can't Do Php in html file -->
 <!DOCTYPE html>
   <html>
     <head>
@@ -51,7 +51,7 @@
                 getDocumentById("errorDiv").innerHTML = 'User not found, have you signed up with us?'
             }
         }
-    
+    	}
     </script>
     
       <!--Import Google Icon Font-->
@@ -61,22 +61,6 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <style>
-        body {
-          background-color: rgb(255,250,205);
-        }
-        form {
-          position: absolute;
-          top: 50%;
-          bottom: 50%;
-          left: 10%;
-          right: 10%;
-        }
-       table { 
-          margin-top: 30%;          
-        } 
-        
-      </style>
     </head>
 
     <body>
@@ -84,7 +68,7 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
         <!-- This is the base html to which just link to all the materializecss files. -->
-      
+      <!-- 
       <h1><center>Oakridge Voting System</center></h1>
       <table align=center frame="border">
         <tbody>
@@ -95,8 +79,29 @@
             <tr><td><center><button id=submit type=submit>Submit</button></center><td></tr>
             </form>
         </tbody>
-      </table>
+      </table> --> 
       
+    <div class="row">
+      <div class="col s6 offset-s3">
+        <div class="card-panel teal">
+          <h1> Oakridge Voting System</h1>
+            <div id="loginForm">
+              <form>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input placeholder="Username" id="userid" type="text" class="validate">
+                    <label for="userid">Username</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="userpwd" type="password" class="validate">
+                    <label for="userpwd">Password</label>
+                  </div>
+                </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
       <div id="errorDiv">
       
       </div>
