@@ -1,3 +1,21 @@
+<?php 
+// Database conn
+
+    $servername = getenv('IP');
+    $username = getenv('C9_USER');
+    $password = "";
+    $database = "c9";
+    $dbport = 3306;
+
+    // Create connection
+    $db = new mysqli($servername, $username, $password, $database, $dbport);
+     // Check connection
+    if ($db->connect_error) {
+        die("Connection failed: " . $db->connect_error);
+    } 
+  $sql = "SELECT * FROM Posts";
+   $result = $db->query($sql);
+?>
 <!DOCTYPE html>
   <html>
     <head>
@@ -17,22 +35,10 @@
       <script type="text/javascript" src="js/materialize.min.js"></script>
          <script type="text/javascript" src="js/sha.js"></script>
         <!-- This is the base html to which just link to all the materializecss files. -->
-      <!-- 
-      <h1><center>Oakridge Voting System</center></h1>
-      <table align=center frame="border">
-        <tbody>
-          <tr><td><center> <h4>Log-in</h4></center></td></tr>
-            <form method="POST" method="voting.php"> 
-            <tr><td>Username:<input id= user type="text" name="userid"></td></tr>
-            <tr><td>Password:<input id= user type="password" name="userpwd"></td></tr>
-            <tr><td><center><button id=submit type=submit>Submit</button></center><td></tr>
-            </form>
-        </tbody>
-      </table> --> 
       
     <div class="row">
       <div class="col s6 offset-s3">
-        <div class="card-panel teal">
+        <div class="card-panel amber">
           <h1> Oakridge Voting System</h1>
             <div id="loginForm">
               <form action="Javascript:Login()">
@@ -52,31 +58,148 @@
                 </form>
                
             </div>
+            <div id="voting">
+               <form action="Javascript:addVotes()">
+                 <ul class="collection">
+                  
+      <?php
+        if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      if($row['PID'] == 1 || $row['PID'] == 2){
+        if ($row['PID'] == 1) {
+        echo ' <div class="row">
+                   <div class="col s4 offset-s4"><h1 id="headboy">Head Boy</h1></div>
+                   
+                 </div>
+                 <div class="row">
+                   <div class="col s6">  
+                   <img class="responsive-img" src="http://www.headhuntersinc.com/media/340/headhuntinc_candidatesslider4.png">
+      <input name="post'.$row['PID'].'" type="radio" id="headboy1" value="1"  required />
+      <label for="headboy1">'. $row['Cname1']. '</label></div>
+                 
+    <div class="col s6">  
+    <img class="responsive-img" src="http://futureindiaparty.org/wp-content/uploads/2013/08/The-Future-India-Party-_Candidates-blue.jpg">
+      <input name="post'.$row['PID'].'" type="radio" id="headboy2" value="2"  />
+      <label for="headboy2">'. $row['Cname2']. '</label></div>
+      </div>';
+        } else{
+          echo '   <div class="row">
+                   <div class="col s4 offset-s4"><h1 id="headgirl">Head Girl</h1></div>
+                   
+                 </div>
+                 <div class="row">
+                   <div class="col s6">  
+                   <img class="responsive-img" src="http://www.headhuntersinc.com/media/340/headhuntinc_candidatesslider4.png">
+      <input name="post'.$row['PID'].'" type="radio" id="headgirl1" value="1"  required />
+      <label for="headgirl1">'. $row['Cname1']. '</label></div>
+                 
+    <div class="col s6">  
+    <img class="responsive-img" src="http://futureindiaparty.org/wp-content/uploads/2013/08/The-Future-India-Party-_Candidates-blue.jpg">
+      <input name="post'.$row['PID'].'" type="radio" id="headgirl2" value="2" />
+      <label for="headgirl2">'. $row['Cname2']. '</label></div>
+      </div>';
+        }
+      } else {
+      echo '<div class="row">
+        <div class="col s4 offset-s4"><h4 id="post'.$row['PID'].'">'. $row['Pname'].'</h4></div>
+                   
+                 </div>
+                 <div class="row">
+                   <div class="col s6">  
+           <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-a"  value="1" required/>        
+      <label for="post'.$row['PID'].'-a">'. $row['Cname1']. '</label></div>
+                 
+    <div class="col s6">  
+      <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-b" value="2"/>
+      <label for="post'.$row['PID'].'-b">'. $row['Cname2']. '</label></div>
+      </div>';
+    }
+    }
+          
+        }
+      ?>
+                </uL>
+                <div class="row">
+                  <div class="col s4 offset-s4"><button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button></div> 
+                </div>
+    
+  </form>
+   </div>
+            </div>
         </div>
       </div>
     </div>
     <script>
+      document.getElementById("voting").style.display = 'none';
+      console.log("in Js");
     function Login() {
     var username = document.getElementById("userid").value;
         var password = document.getElementById("userpwd").value;
         console.log(username + password);
-      //  var date = new Date();
-       // var hour = date.getHours();
-       var hour = 12;
+        var date = new Date();
+        var hour = date.getHours();
          var sha256 = new jsSHA('SHA-256', 'TEXT');
       sha256.update(password);
         var hash = sha256.getHash("HEX");
         console.log(hash); 
-        if  (username === "admin" && hash === "904724B3EC8D73FD2E9C0CBEF4D2BF8E160F14AD73F3B7081E7B4AE811D84C96" ) {
+        if  (username === "admin" && hash === "904724b3ec8d73fd2e9c0cbef4d2bf8e160f14ad73f3b7081e7b4ae811d84c96" ) {
           document.getElementById("loginForm").style.display = 'none';
+          document.getElementById("voting").style.display = 'block';
         } else if ((username === "voting" && hash === "3ab4f1d4a5eb2f8b5db6b0cf2edc64d7635ad7335dbd2af1b0ee99433da85b01") && (hour > 8 && hour < 15)){
           document.getElementById("loginForm").style.display = 'none';
+          document.getElementById("voting").style.display = 'block';
         }
         else {
-           Materialize.toast('Wrong Password', 4000)
+           Materialize.toast('Wrong Password', 4000);
         }
     }
     </script>
+      <?php
+      echo '<script>
+       function addVotes() {
+         
+      ';
+       $sql = "SELECT * FROM Posts";
+   $result = $db->query($sql);
+       if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      echo 'var vote' . $row['PID'] . ' = document.querySelector("input[name='."'post".$row['PID']."'".']:checked").value;
+      console.log(vote'.$row['PID'].') ; 
+      ';
+      
+    }
+       }
+       echo 'console.log("Pre ajax");
+       $.ajax({
+  type: "POST",
+ datatype : "json",
+	url: "/update.php",
+  data: { ';
+   $sql = "SELECT * FROM Posts";
+   $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      echo $row['PID']. ' : vote'.$row['PID'].' ,' ;
+    }
+    }
+
+echo' password : 123456},
+  cache: true,
+  success: function(data){     
+  console.log(data);
+  if (data.isTrue){
+     Materialize.toast("Succesfully Voted", 4000);
+      window.location = "/index.html";
+    }
+  }
+        }); ';
+    echo ' }</script>';
+      ?>
       
     </body>
   </html>
