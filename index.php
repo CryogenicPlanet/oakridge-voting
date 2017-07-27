@@ -29,7 +29,11 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body>
+    <body style="background: url('images.jpg') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;">>
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -159,6 +163,10 @@
     </script>
       <?php
       echo '<script>
+      function sleepFor( sleepDuration ){
+    var now = new Date().getTime();
+    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
+}
        function addVotes() {
          
       ';
@@ -191,9 +199,10 @@
 echo' password : 123456},
   cache: true,
   success: function(data){     
-  console.log(data);
+  console.log(data)
   if (data){
      Materialize.toast("Succesfully Voted", 10000);
+     sleepFor(2);
       window.location = "/index.php";
     }
   }
