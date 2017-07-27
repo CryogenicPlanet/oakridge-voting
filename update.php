@@ -33,7 +33,7 @@ if ($db->query($sql) === TRUE) {
    
     }
      if ($sucess == $number) {
-        $array = ["isTrue" => true];
-        echo json_encode( $array );
+        
+        echo (true);
     }
 ?>

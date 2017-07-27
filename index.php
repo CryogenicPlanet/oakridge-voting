@@ -192,9 +192,9 @@ echo' password : 123456},
   cache: true,
   success: function(data){     
   console.log(data);
-  if (data.isTrue){
-     Materialize.toast("Succesfully Voted", 4000);
-      window.location = "/index.html";
+  if (data){
+     Materialize.toast("Succesfully Voted", 10000);
+      window.location = "/index.php";
     }
   }
         }); ';
