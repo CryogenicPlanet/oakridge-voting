@@ -29,11 +29,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body style="background: url('images.jpg') no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;">>
+    <body bgcolor="black">
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -41,10 +37,16 @@
         <!-- This is the base html to which just link to all the materializecss files. -->
       
     <div class="row">
-      <div class="col s6 offset-s3">
-        <div class="card-panel amber">
-          <h1> Oakridge Voting System</h1>
-            <div id="loginForm">
+      <div class="col s6 offset-s3">    
+</div>
+</div>
+  <div id="loginForm">
+      <div class="row">
+      <div class="col s8 offset-s2">
+        <div class="card-panel white darken-3">
+          <div class="row">
+          <h1  class="col s6 offset-3">Oakridge Elections 2017</h1>
+            
               <form action="Javascript:Login()">
                 <div class="row">
                   <div class="input-field col s6">
@@ -62,74 +64,130 @@
                 </form>
                
             </div>
+            </div>
+            </div>
+            </div>
+            </div>
             <div id="voting">
                <form action="Javascript:addVotes()">
-                 <ul class="collection">
+                 <div class="container">
+                <h1 class="col s6 offset-3 white-text">Oakridge Elections 2017</h1>
+        
                   
       <?php
         if ($result->num_rows > 0) {
     // output data of each row
+     $true = true;
     while($row = $result->fetch_assoc()) {
       if($row['PID'] == 1 || $row['PID'] == 2){
         if ($row['PID'] == 1) {
-        echo ' <div class="row">
-                   <div class="col s4 offset-s4"><h1 id="headboy">Head Boy</h1></div>
-                   
-                 </div>
-                 <div class="row">
-                   <div class="col s6">  
-                   <img class="responsive-img" src="http://www.headhuntersinc.com/media/340/headhuntinc_candidatesslider4.png">
-      <input name="post'.$row['PID'].'" type="radio" id="headboy1" value="1"  required />
+          
+        echo '<div class="row">
+        <div class="col s12">
+          <div class="card white z-depth-4">
+            <div class="card-content black-text">
+              <span class="card-title" id="headboy">Head Boy</span>
+              <div class="row">
+                <div class="col s6 black-text">
+                <div class="col s4"><img class="circle responsive-img" src="images.png"></div>
+                    <input  name="post'.$row['PID'].'" type="radio" id="headboy1" value="1"  required class="validate" />
       <label for="headboy1">'. $row['Cname1']. '</label></div>
-                 
-    <div class="col s6">  
-    <img class="responsive-img" src="http://futureindiaparty.org/wp-content/uploads/2013/08/The-Future-India-Party-_Candidates-blue.jpg">
-      <input name="post'.$row['PID'].'" type="radio" id="headboy2" value="2"  />
+                
+                <div class="col s6 black-text">
+                 <div class="col s4">  <img class="circle responsive-img" src="4144-icons_candidate.png"> </div>
+                    <input name="post'.$row['PID'].'" type="radio" id="headboy2" value="2" class="validate" />
       <label for="headboy2">'. $row['Cname2']. '</label></div>
-      </div>';
+                </div>
+              </div>
+         </div>
+          
+            </div>
+        </div><div class="divider"></div>
+          ';
         } else{
-          echo '   <div class="row">
-                   <div class="col s4 offset-s4"><h1 id="headgirl">Head Girl</h1></div>
-                   
-                 </div>
-                 <div class="row">
-                   <div class="col s6">  
-                   <img class="responsive-img" src="http://www.headhuntersinc.com/media/340/headhuntinc_candidatesslider4.png">
-      <input name="post'.$row['PID'].'" type="radio" id="headgirl1" value="1"  required />
+          echo '
+          <div class="row">
+          <div class="col s12">
+          <div class="card white z-depth-4">
+            <div class="card-content black-text">
+              <span class="card-title" id="headgirl">Head Girl</span>
+              <div class="row">
+                <div class="col s6 black-text">
+                <div class="col s4"><img class="circle responsive-img" src="images.png"></div>
+                    <input  name="post'.$row['PID'].'" type="radio" id="headgirl1" value="1"  required class="validate" />
       <label for="headgirl1">'. $row['Cname1']. '</label></div>
-                 
-    <div class="col s6">  
-    <img class="responsive-img" src="http://futureindiaparty.org/wp-content/uploads/2013/08/The-Future-India-Party-_Candidates-blue.jpg">
-      <input name="post'.$row['PID'].'" type="radio" id="headgirl2" value="2" />
+                
+                <div class="col s6 black-text">
+                 <div class="col s4">  <img class="circle responsive-img" src="4144-icons_candidate.png"> </div>
+                    <input name="post'.$row['PID'].'" type="radio" id="headgirl2" value="2" class="validate" />
       <label for="headgirl2">'. $row['Cname2']. '</label></div>
-      </div>';
+                </div>
+              </div>
+         </div>
+          
+            </div>
+          </div>
+      <div class="divider"></div>';
         }
       } else {
-      echo '<div class="row">
-        <div class="col s4 offset-s4"><h4 id="post'.$row['PID'].'">'. $row['Pname'].'</h4></div>
-                   
-                 </div>
-                 <div class="row">
-                   <div class="col s6">  
-           <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-a"  value="1" required/>        
+        if($true == true){
+           echo '<div class="row">
+        <div class="col s6">
+          <div class="card white z-depth-3">
+            <div class="card-content black-text">
+              <span class="card-title"id="post'.$row['PID'].'">'. $row['Pname'].'</span>
+              <div class="row">
+                <div class="col s6 black-text">
+                <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-a"  value="1" class="validate" required/>        
       <label for="post'.$row['PID'].'-a">'. $row['Cname1']. '</label></div>
-                 
-    <div class="col s6">  
-      <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-b" value="2"/>
+                
+                <div class="col s6 black-text">
+                    <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-b" class="validate" value="2"/>
       <label for="post'.$row['PID'].'-b">'. $row['Cname2']. '</label></div>
-      </div>';
+                </div>
+              </div>
+         </div>
+          
+            </div>
+          ';
+          $true = false;
+        } else {
+          echo '
+        <div class="col s6">
+          <div class="card white  z-depth-3">
+            <div class="card-content black-text">
+              <span class="card-title"id="post'.$row['PID'].'">'. $row['Pname'].'</span>
+              <div class="row">
+                <div class="col s6 black-text">
+                
+                    <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-a"  value="1" class="validate" required/>        
+      <label for="post'.$row['PID'].'-a">'. $row['Cname1']. '</label></div>
+                
+                <div class="col s6 black-text">
+               
+                    <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-b" class="validate" value="2"/>
+      <label for="post'.$row['PID'].'-b">'. $row['Cname2']. '</label></div>
+                </div>
+              </div>
+         </div>
+          
+            </div>
+          </div><div class="divider"></div>';
+          $true = true;
+        }
+     
     }
     }
           
         }
       ?>
-                </uL>
+            
                 <div class="row">
-                  <div class="col s4 offset-s4"><button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                  <div class="col s12"><button class="btn waves-effect waves-light" type="submit" name="action">Submit
     <i class="material-icons right">send</i>
   </button></div> 
                 </div>
-    
+    </div>
   </form>
    </div>
             </div>
@@ -163,10 +221,6 @@
     </script>
       <?php
       echo '<script>
-      function sleepFor( sleepDuration ){
-    var now = new Date().getTime();
-    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
-}
        function addVotes() {
          
       ';
@@ -202,7 +256,6 @@ echo' password : 123456},
   console.log(data)
   if (data){
      Materialize.toast("Succesfully Voted", 10000);
-     sleepFor(2);
       window.location = "/index.php";
     }
   }
