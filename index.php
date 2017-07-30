@@ -29,7 +29,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body bgcolor="black">
+    <body>
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -45,7 +45,8 @@
       <div class="col s8 offset-s2">
         <div class="card-panel white darken-3">
           <div class="row">
-          <h1  class="col s6 offset-3">Oakridge Elections 2017</h1>
+            <div class="col s6"><div class="col s4"> <img src="logo.png" alt="" class="responsive-img"></div> <h1>Elections 2017</h1></div>
+         
             
               <form action="Javascript:Login()">
                 <div class="row">
@@ -71,7 +72,8 @@
             <div id="voting">
                <form action="Javascript:addVotes()">
                  <div class="container">
-                <h1 class="col s6 offset-3 white-text">Oakridge Elections 2017</h1>
+                   <div class="row"><div class="col s8 offset-s2"><div class="col s3"> <img src="logo.png" alt="" class="responsive-img"></div> <h1>Elections 2017</h1></div></div>
+         
         
                   
       <?php
