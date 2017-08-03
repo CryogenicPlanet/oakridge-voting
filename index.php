@@ -92,7 +92,7 @@
               <div class="row">
                 <div class="col s6 black-text">
                 <div class="col s4"><img class="circle responsive-img" src="images.png"></div>
-                    <input  name="post'.$row['PID'].'" type="radio" id="headboy1" value="1"  required class="validate" />
+                    <input  name="post'.$row['PID'].'" type="radio" id="headboy1" value="1"   class="validate" />
       <label for="headboy1">'. $row['Cname1']. '</label></div>
                 
                 <div class="col s6 black-text">
@@ -116,7 +116,7 @@
               <div class="row">
                 <div class="col s6 black-text">
                 <div class="col s4"><img class="circle responsive-img" src="images.png"></div>
-                    <input  name="post'.$row['PID'].'" type="radio" id="headgirl1" value="1"  required class="validate" />
+                    <input  name="post'.$row['PID'].'" type="radio" id="headgirl1" value="1"   class="validate" />
       <label for="headgirl1">'. $row['Cname1']. '</label></div>
                 
                 <div class="col s6 black-text">
@@ -140,7 +140,7 @@
               <span class="card-title"id="post'.$row['PID'].'">'. $row['Pname'].'</span>
               <div class="row">
                 <div class="col s6 black-text">
-                <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-a"  value="1" class="validate" required/>        
+                <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-a"  value="1" class="validate" />        
       <label for="post'.$row['PID'].'-a">'. $row['Cname1']. '</label></div>
                 
                 <div class="col s6 black-text">
@@ -162,7 +162,7 @@
               <div class="row">
                 <div class="col s6 black-text">
                 
-                    <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-a"  value="1" class="validate" required/>        
+                    <input name="post'.$row['PID'].'" type="radio" id="post'.$row['PID'].'-a"  value="1" class="validate" />        
       <label for="post'.$row['PID'].'-a">'. $row['Cname1']. '</label></div>
                 
                 <div class="col s6 black-text">
@@ -228,16 +228,26 @@
       ';
        $sql = "SELECT * FROM Posts";
    $result = $db->query($sql);
+   echo "var notVoted = false;";
        if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-      echo 'var vote' . $row['PID'] . ' = document.querySelector("input[name='."'post".$row['PID']."'".']:checked").value;
+      echo 'var vote' . $row['PID'] . '= "";
+      if(!(document.querySelector("input[name='."'post".$row['PID']."'".']:checked"))){
+          if(notVoted == false){
+          Materialize.toast("Please Fill All the Votes Before Submiting", 1000);
+          notVoted = true;
+          } 
+      } else {
+        vote' . $row['PID'] . ' = document.querySelector("input[name='."'post".$row['PID']."'".']:checked").value
+      }
       console.log(vote'.$row['PID'].') ; 
       ';
       
     }
        }
        echo 'console.log("Pre ajax");
+       if(notVoted == false){
        $.ajax({
   type: "POST",
  datatype : "json",
@@ -261,7 +271,7 @@ echo' password : 123456},
       window.location = "/index.php";
     }
   }
-        }); ';
+        }); } ';
     echo ' }</script>';
       ?>
       
