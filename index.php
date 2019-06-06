@@ -199,27 +199,80 @@
     <script>
       document.getElementById("voting").style.display = 'none';
       console.log("in Js");
+       var username;
+        var password;
+        var isTrue = 0;
+        var noTime = 0;
     function Login() {
-    var username = document.getElementById("userid").value;
-        var password = document.getElementById("userpwd").value;
+     username = document.getElementById("userid").value;
+       password = document.getElementById("userpwd").value;
+        
         console.log(username + password);
-        var date = new Date();
-        var hour = date.getHours();
+         $.ajax({
+          type : "POST",
+          datatype : "json",
+          url : "/password.php",
+          data : {
+            password : password
+          },
+          success: function(data){
+           
+  if (data == 1){ 
+     console.log(data);
+    isTrue = 1;
+    } else {
+      isTrue = 2;
+    }
+  }
+          });
+        
          var sha256 = new jsSHA('SHA-256', 'TEXT');
       sha256.update(password);
         var hash = sha256.getHash("HEX");
-        console.log(hash); 
+        window.setTimeout(waitAjax(),2000);
+        function waitAjax(){
+       
+          if (username == "admin") {
+            checkin(hash);
+            
+          } else if(username =="voting"){
+            console.log("inside voting");
+            if (isTrue == 1) {
+              checkin(hash);
+            } else if (isTrue != 0) {
+             Materialize.toast('Wrong Password', 4000);
+            
+          } else {
+            if (noTime == 0) {
+               Materialize.toast('Logining In Please Wait...', 2000);
+            }
+            noTime++;
+            window.setTimeout(waitAjax,2000);
+          }
+          } else {
+             Materialize.toast('Wrong Password', 4000);
+            
+          }
+          
+        }
+    }
+       function checkin(hash){
+         var date = new Date();
+        var hour = date.getHours();
+         console.log("in checkin");
         if  (username === "admin" && hash === "904724b3ec8d73fd2e9c0cbef4d2bf8e160f14ad73f3b7081e7b4ae811d84c96" ) {
           document.getElementById("loginForm").style.display = 'none';
           document.getElementById("voting").style.display = 'block';
-        } else if ((username === "voting" && hash === "3ab4f1d4a5eb2f8b5db6b0cf2edc64d7635ad7335dbd2af1b0ee99433da85b01") && (hour > 8 && hour < 15)){
+        } else if ((username === "voting" && isTrue == 1) && (hour > 8 && hour < 15)){
           document.getElementById("loginForm").style.display = 'none';
           document.getElementById("voting").style.display = 'block';
         }
         else {
+          console.log("wrong password")
            Materialize.toast('Wrong Password', 4000);
         }
     }
+    
     </script>
       <?php
       echo '<script>
